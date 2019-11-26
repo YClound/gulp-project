@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>typeScript</title>
+  <link href="../dist/css/transform.css" type=“text/css” />
+
+  <style type="text/css">
+    .width-test {
+      display: inline-block;
+      width: 0;
+    }
+
+    .width-test::before {
+      content: '你love我';
+      color: #ffffff;
+      outline: #333 2px solid;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="width-test"></div>
+  <script src="../dist/ts/main.min.js"></script>
+</body>
+
+</html>
