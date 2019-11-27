@@ -7,7 +7,9 @@ var decLiteral: number = 6;
 var hexLiteral: number = 0xf00d;
 var binaryLiteral: number = 0b1010;
 var octalLiteral: number = 0o744;
+// @ts-ignore
 decLiteral = null;
+// @ts-ignore
 decLiteral = undefined;
 
 // 数组
@@ -27,7 +29,7 @@ interface Person {
 }
 var person: Person = { name: <string>'1', person: '2' as string };
 var greeter = function (person: string, name?: string): Person {
-  return { person, name };
+  return { person, name: name || '' };
 }
 var user: string = `Jane User`;
 let a1: {}; // Ok

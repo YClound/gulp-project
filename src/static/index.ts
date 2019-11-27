@@ -1,0 +1,1 @@
+const some: SomeType = { count: 2 }

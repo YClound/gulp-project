@@ -1,6 +1,6 @@
 const { series, parallel, src, dest, EventEmitter, watch } = require('gulp');
 const ts = require("gulp-typescript");
-const tsProject = ts.createProject("tsconfig.json");
+const tsCompile = ts.createProject('tsconfig.json');
 const gulpIf = require("gulp-if");
 const babel = require("gulp-babel");
 const uglify = require('gulp-uglify');
@@ -35,8 +35,9 @@ function cssBuild() {
 }
 
 function jsbuild() {
-    return src(['./src/**/*.ts', '!./src/static/*.ts'])
-        .pipe(tsProject())
+    return src(['./src/**/*.ts'])
+        .pipe(tsCompile())
+        .on('error', (resp) => { console.log(resp) /* Ignore compiler errors */})
         .pipe(src('./src/**/*.js'))
         .pipe(babel())
         .pipe(gulpIf(build, uglify()))
