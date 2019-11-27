@@ -1,47 +1,94 @@
 const { series, parallel, src, dest, EventEmitter, watch } = require('gulp');
 const ts = require("gulp-typescript");
 const tsProject = ts.createProject("tsconfig.json");
+const gulpIf = require("gulp-if");
+const babel = require("gulp-babel");
 const uglify = require('gulp-uglify');
-const rename = require('gulp-rename');
 const gulpClean = require('gulp-clean');
 const less = require('gulp-less');
-const liveReload = require('gulp-livereload');
+const sass = require('gulp-sass');
+const cssmin = require('gulp-cssmin');
+const imagemin = require('gulp-imagemin');
+const htmlmin = require('gulp-htmlmin');
+const connect = require('gulp-connect');
+const proxy = require('http-proxy-middleware');
 
+sass.compiler = require('node-sass');
+const env = process.env.NODE_ENV;
+console.log(env)
+const rootDir = env === 'production' ? './dist' : './dev';
+const build = env === 'production' ? true : false;
 
-function cleanJs() {
-    return src('./dist', { read: false })
+// 返回stream
+function cleanDir() {
+    return src(rootDir, { read: false, allowEmpty: true })
         .pipe(gulpClean());
 }
 
-function lessBuild() {
+function cssBuild() {
     return src('./src/**/*.less')
         .pipe(less())
-        .pipe(dest('./dist'))
-        .pipe(liveReload())
+        .pipe(src('./src/**/*.scss'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulpIf(build, cssmin()))
+        .pipe(dest(rootDir))
 }
 
-// 返回stream
-function build() {
+function jsbuild() {
     return src(['./src/**/*.ts', '!./src/static/*.ts'])
         .pipe(tsProject())
-        .pipe(uglify())
-        .pipe(rename({ extname: '.min.js' }))
-        .pipe(dest('./dist'))
-        .pipe(liveReload())
+        .pipe(src('./src/**/*.js'))
+        .pipe(babel())
+        .pipe(gulpIf(build, uglify()))
+        .pipe(dest(rootDir))
 }
 
 function htmlBuild() {
     return src('./src/**/*.html')
-        .pipe(liveReload())
+        .pipe(gulpIf(build, htmlmin({ collapseWhitespace: true })))
+        .pipe(dest(rootDir))
 }
 
-function start() {
-    watch('./src/**/*.ts', { ignoreInitial: false }, build);
-    watch('./src/**/*.less', { ignoreInitial: false }, lessBuild);
-    watch('./src/**/*.html', htmlBuild)
+function imageBuild() {
+    return src('./src/images/*.*')
+        .pipe(imagemin())
+        .pipe(dest(`${rootDir}/images`))
 }
 
-exports.start = start;
+function connectServer() {
+    connect.server({
+        root: rootDir,
+        livereload: true,
+        // host: '10.1.8.105',
+        port: 9090, //服务器端口
+        middleware: function (connect, opt) {
+            return [
+                proxy('/datahub', {
+                    target: 'http://test.openapi.shuli.com',
+                    changeOrigin: true
+                })
+            ]
+        }
+    });
+}
+
+function reloadPage() {
+    return src('./src/**/*.*')
+        .pipe(connect.reload());
+}
+
+function start(cb) {
+    connectServer();
+    watch(['./src/**/*.ts', './src/**/*.js'], { ignoreInitial: false }, jsbuild);
+    watch('./src/**/*.less', { ignoreInitial: false }, cssBuild);
+    watch('./src/**/*.html', { ignoreInitial: false }, htmlBuild);
+    watch('./src/images/*.*', { ignoreInitial: false }, imageBuild);
+    watch('./src/**/*.*', { ignoreInitial: false }, reloadPage);
+    cb();
+}
+
+exports.start = series(cleanDir, start);
+exports.build = series(cleanDir, jsbuild, cssBuild, htmlBuild, imageBuild, connectServer);
 
 
 
@@ -87,5 +134,5 @@ exports.asyncAwaitTask = asyncAwaitTask;
 
 
 
-exports.build = build;
+// exports.build = build;
 // exports.default = parallel(build, series(clean, build));
