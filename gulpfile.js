@@ -3,6 +3,9 @@ const ts = require("gulp-typescript");
 const tsCompile = ts.createProject('tsconfig.json');
 const gulpIf = require("gulp-if");
 const babel = require("gulp-babel");
+const browserify = require("browserify");
+const webpackStream = require("webpack-stream");
+const named = require('vinyl-named');
 const uglify = require('gulp-uglify');
 const gulpClean = require('gulp-clean');
 const less = require('gulp-less');
@@ -35,13 +38,15 @@ function cssBuild() {
 }
 
 function jsbuild() {
-    return src(['./src/**/*.ts'])
-        .pipe(tsCompile())
-        .on('error', (resp) => { console.log(resp) /* Ignore compiler errors */})
-        .pipe(src('./src/**/*.js'))
+    return src('./src/**/*.js')
+        .pipe(named())
+        .pipe(webpackStream({
+            watch: true,
+            mode: "development"
+        }))
         .pipe(babel())
         .pipe(gulpIf(build, uglify()))
-        .pipe(dest(rootDir))
+        .pipe(dest(rootDir + '/js'))
 }
 
 function htmlBuild() {

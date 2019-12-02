@@ -1,44 +1,23 @@
+// import '@babel/polyfill';
+
 // Set集合和Map集合
 // 使用对象作为对象的属性 获取不同的属性 的值是一样的
 const set = Object.create(null)
-const key1 = { a: 1 }
-const key2 = { b: 2 }
+let key1 = { a: 1 }
+let key2 = { b: 2 }
 set[key1] = 'foo'
 set[key2] = 'foo1'
 console.log(set, set['[object Object]'])
 
 /**
- * in操作符 - 如果指定的属性在指定的对象或其原型链中，则in 运算符返回true
- * prop in objectName
- * prop - 一个字符串类型或者 symbol 类型的属性名或者数组索引（非symbol类型将会强制转为字符串）; objectName
-检查它（或其原型链）是否包含具有指定名称的属性的对象
- *  */
-// 数组
-const arrayIn = new Array("redwood", "bay", "cedar", "oak", "maple");
-console.log("0 in arrayIn: ", 0 in arrayIn)      // 返回true
-console.log("6 in arrayIn: ", 6 in arrayIn)        // 返回false
-console.log("'bay' in arrayIn: ", "bay" in arrayIn)   // 返回false (必须使用索引号,而不是数组元素的值)
-console.log("'length' in arrayIn: ", "length" in arrayIn) // 返回true (length是一个数组属性)
-console.log("Symbol.iterator in arrayIn: ", Symbol.iterator in arrayIn) // 返回true (数组可迭代，只在ES2015+上有效)
-
-// 使用 delete 运算符删除了一个属性，则 in 运算符对所删除属性返回 false, 将一个属性的值赋值为undefined，而没有删除它，则 in 运算仍然会返回true。
-delete arrayIn[3];
-arrayIn[4] = undefined
-console.log(arrayIn, 3 in arrayIn, 4 in arrayIn) // ["redwood", "bay", "cedar", undefined, undefined] false true
-
-// in右操作数必须是一个对象值。例如，你可以指定使用String构造函数创建的字符串，但不能指定字符串文字。
-const newStrIn = new String('aaaaa');
-const strIn = 'aaaaa';
-console.log("'length' in str: ", 'length' in newStrIn, "  'length' in strIn: ", 'length' in strIn) // true, false
-
-/**
- * Set集合 
+ * Set集合 - 是一种有序列表  类似于数组 且成员都是唯一的
  * 属性
  * size - 长度
  * 方法
  * add() 添加元素
+ * has() 判断Set集合中 是否包含摸个元素
  * delete() 删除元素 
- * clear() 清除Set集合
+ * clear() 清除Set集合中的所有元素
  * */
 const newSet = new Set([1, 1, 2]);
 newSet.add(6);
@@ -47,5 +26,80 @@ newSet.add(key1)
 newSet.add(key2)
 newSet.add("6")
 newSet.delete("6")
-newSet.clear()
-console.log(newSet, newSet.size, newSet.has(5))
+// newSet.clear()
+console.log(newSet, newSet.size, newSet.has(5)) // Set(0) {}[[Entries]]No propertiessize: (...)__proto__: Set 0 false
+
+newSet.forEach((value, key, ownSet) => {
+  console.log(value, key, ownSet, 'forEach循环')
+})
+
+let processor = {
+  output(value) {
+    console.log(value)
+  },
+  process(dataSet) {
+    dataSet.forEach(function (value) {
+      this.output(value);
+    }, this)
+  }
+}
+
+processor.process(newSet)
+
+const newSet2 = new Set("1253671818");
+console.log([...newSet2], 'set2')
+
+// Set集合转换成数组
+console.log('Set集合转换成数组:', [...newSet])
+// for of 循环
+for (const value of newSet) {
+  console.log(value)
+}
+
+/**
+ * 弱引用集合 WeakSet - 追踪对象的引用
+ * 不可迭代不能使用for-of 无keys()和values()方法 不支持forEach()和size方法
+ * add() - 参数是对象
+ * has() - 非对象参数返回false
+ * delete() 非对象参数返回false 
+ * */
+const newWeakSet = new WeakSet([key2]); // 构造函数不接受任何原始值 数组中的元素是对象
+newWeakSet.add(key1);
+key1 = null;
+console.log(newWeakSet.size, newWeakSet.has(key1), newWeakSet) // undefined false, WeakSet {{…}}[[Entries]]0: Object__proto__: WeakSet
+// newWeakSet.add('1') // Invalid value used in weak set
+// newWeakSet.forEach((item) => {}) // newWeakSet.forEach is not a function
+
+
+/**
+ * Map集合-存储许多键值对的有序列表
+ * set() 添加新元素
+ * get() 获取信息 不存在键名返回undefined
+ * has() 检测指定的键名在Map集合中是否已存在true/false
+ * delete() 从Map集合中移除指定的键名和值
+ * clear() 移除Map集合中的所有键值对
+ * size - 键值对数量
+ */
+
+const newMap = new Map([['name', 'Tome']]);
+newMap.set("name", "ES6");
+newMap.set("age", 20);
+newMap.set(key1, 'key1');
+newMap.set(key2, 'key2')
+console.log('newMap.get("age"):',newMap.get("age"), newMap.get(key1), newMap.get(key2))
+
+// 遍历顺序-插入Map集合的顺序
+newMap.forEach((value, key, ownerMap) => {
+  console.log(value, key, ownerMap)
+})
+
+/**
+ * WeakMap集合 - 键名必须是一个非null的对象
+ * */ 
+
+const newWeakMp = new WeakMap();
+let element = document.querySelector('.element');
+newWeakMp.set(element, "Original");
+element.parentNode.removeChild(element);
+element = null;
+console.log(newWeakMp.has(element), newWeakMp, newWeakMp.get(element))
