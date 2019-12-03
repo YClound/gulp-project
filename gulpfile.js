@@ -83,17 +83,20 @@ function reloadPage() {
         .pipe(connect.reload());
 }
 
-function start(cb) {
-    connectServer();
+function watchLive(cb) {
     watch(['./src/**/*.ts', './src/**/*.js'], { ignoreInitial: false }, jsbuild);
     watch('./src/**/*.less', { ignoreInitial: false }, cssBuild);
     watch('./src/**/*.html', { ignoreInitial: false }, htmlBuild);
     watch('./src/images/*.*', { ignoreInitial: false }, imageBuild);
+    cb();
+}
+function start(cb) {
+    connectServer();
     watch('./src/**/*.*', { ignoreInitial: false }, reloadPage);
     cb();
 }
 
-exports.start = series(cleanDir, start);
+exports.start = series(cleanDir, watchLive, start);
 exports.build = series(cleanDir, jsbuild, cssBuild, htmlBuild, imageBuild, connectServer);
 
 
