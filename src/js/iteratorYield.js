@@ -1,7 +1,4 @@
-import { setPriority } from "os";
-import { sep } from "path";
-
-// 迭代器 
+// 迭代器
 // es5自定义实现一个迭代器函数
 function createIterator(items) {
   var i = 0;

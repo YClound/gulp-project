@@ -1,9 +1,11 @@
 const { series, parallel, src, dest, EventEmitter, watch } = require('gulp');
 const ts = require("gulp-typescript");
 const tsCompile = ts.createProject('tsconfig.json');
+const browserify = require('browserify');
+const tsify = require('tsify');
+
 const gulpIf = require("gulp-if");
 const babel = require("gulp-babel");
-const browserify = require("browserify");
 const webpackStream = require("webpack-stream");
 const named = require('vinyl-named');
 const uglify = require('gulp-uglify');
@@ -40,13 +42,22 @@ function cssBuild() {
 function jsbuild() {
     return src('./src/**/*.js')
         .pipe(named())
-        .pipe(webpackStream({
-            watch: true,
-            mode: "development"
-        }))
+        .pipe(webpackStream({ mode: "development" }))
         .pipe(babel())
-        .pipe(gulpIf(build, uglify()))
         .pipe(dest(rootDir + '/js'))
+}
+
+function tsBuild() {
+    return browserify({
+        basedir: './src',
+        debug: true,
+        entries: ['**/*.ts'],
+        cache: {},
+        packageCache: {}
+    })
+        .plugin(tsify)
+        .pipe(gulpIf(build, uglify()))
+        .pipe(dest(rootDir))
 }
 
 function htmlBuild() {
@@ -84,7 +95,8 @@ function reloadPage() {
 }
 
 function watchLive(cb) {
-    watch(['./src/**/*.ts', './src/**/*.js'], { ignoreInitial: false }, jsbuild);
+    watch('./src/**/*.js', { ignoreInitial: false }, jsbuild);
+    watch('./src/**/*.ts', { ignoreInitial: false }, tsBuild)
     watch('./src/**/*.less', { ignoreInitial: false }, cssBuild);
     watch('./src/**/*.html', { ignoreInitial: false }, htmlBuild);
     watch('./src/images/*.*', { ignoreInitial: false }, imageBuild);

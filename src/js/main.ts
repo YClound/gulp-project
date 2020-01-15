@@ -297,4 +297,12 @@ log1.run(1) // 1
 let log2 = new Log()
 log2.run('1') // '1'
 
-console.log('222222')
+console.log('222222');
+
+const objChoose = {
+  obj: {
+
+  }
+}
+
+// console.log(objChoose?.obj?.a?.b)

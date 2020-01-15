@@ -1,16 +1,16 @@
 // ES5中的仿类
-const PersonType = function(name) {
+const PersonType = function (name) {
   this.name = name;
 }
 
-PersonType.prototype.getName = function() {
+PersonType.prototype.getName = function () {
   return this.name
 }
 
 const person = new PersonType("Tom");
 console.log(person.name, person instanceof PersonType, person instanceof Object)
 
-// 类
+// ES6 class类
 class PersonClass {
   constructor(name) {
     this.name = name;

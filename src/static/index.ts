@@ -1,1 +1,1 @@
-const some: SomeType = { count: 2 }
+// const some: SomeType = { count: 2 }

@@ -1,0 +1,174 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://www.shulidata.com/images/favicon.png" />
+  <style type="text/css">
+    .t1 {
+      border-collapse: collapse;
+      text-align: center;
+      border-spacing: 0;
+      width: 100%;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body style="margin: 0 auto 5%; width:90%;">
+  <div><br />
+    <center>
+      <h2>information_daily_report_2020-01-08</h2>
+    </center><br />
+  </div><br>访问用户-2020-01-07<br />
+  <table border="1" class="dataframe t1">
+    <thead>
+      <tr style="text-align: center;">
+        <th>访问人数</th>
+        <th>阅读篇数</th>
+        <th>获取奖励的篇数</th>
+        <th>获取金币数</th>
+        <th>兑换金币数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1000</td>
+        <td>100</td>
+        <td>50</td>
+        <td>250</td>
+        <td>200</td>
+      </tr>
+    </tbody>
+  </table><br>新用户-2020-01-07<br />
+  <table border="1" class="dataframe t1">
+    <thead>
+      <tr style="text-align: center;">
+        <th>访问人数</th>
+        <th>阅读篇数</th>
+        <th>获取奖励的篇数</th>
+        <th>获取金币数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1000</td>
+        <td>100</td>
+        <td>50</td>
+        <td>250</td>
+      </tr>
+    </tbody>
+  </table><br>新用户留存表-2020-01-07<br />
+  <table border="1" class="dataframe t1">
+    <thead>
+      <tr style="text-align: center;">
+        <th>日期</th>
+        <th>次日留存率</th>
+        <th>第2日留存率</th>
+        <th>第3日留存率</th>
+        <th>第4日留存率</th>
+        <th>第5日留存率</th>
+        <th>第6日留存率</th>
+        <th>第7日留存率</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2020-01-01</td>
+        <td>11.18%</td>
+        <td>8.44%</td>
+        <td>8.72%</td>
+        <td>8.11%</td>
+        <td>6.32%</td>
+        <td>6.42%</td>
+        <td>5.81%</td>
+      </tr>
+      <tr>
+        <td>2020-01-02</td>
+        <td>9.10%</td>
+        <td>7.83%</td>
+        <td>6.83%</td>
+        <td>5.79%</td>
+        <td>5.71%</td>
+        <td>5.11%</td>
+        <td>/</td>
+      </tr>
+      <tr>
+        <td>2020-01-03</td>
+        <td>10.89%</td>
+        <td>8.26%</td>
+        <td>6.18%</td>
+        <td>6.66%</td>
+        <td>5.61%</td>
+        <td>/</td>
+        <td>/</td>
+      </tr>
+      <tr>
+        <td>2020-01-04</td>
+        <td>9.83%</td>
+        <td>6.63%</td>
+        <td>7.15%</td>
+        <td>6.70%</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+      </tr>
+      <tr>
+        <td>2020-01-05</td>
+        <td>7.25%</td>
+        <td>7.00%</td>
+        <td>6.41%</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+      </tr>
+      <tr>
+        <td>2020-01-06</td>
+        <td>9.20%</td>
+        <td>7.34%</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+      </tr>
+      <tr>
+        <td>2020-01-07</td>
+        <td>7.93%</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+        <td>/</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      // dataframe t1-table的className 返回的是一个数组 页面上有三个table class是一样的 所以返回的是长度为3的一个数据
+      var tables = document.getElementsByClassName('dataframe t1');
+
+      // 2-表示第三个table 这边只处理了第三个table 第一列背景色
+      var tbody = tables[2].children;
+
+      // 获取tbody并获取tbody线面的tr标签
+      var tr = tbody[1].children;
+
+      // 循环为td的背景色赋值
+      for (var i = 0; i < tr.length; i++) {
+        // 获取tr下面的td
+        var td = tr[i].children;
+
+        // 获取td内的数值 1-第一列
+        var td4Text = td[1].innerHTML;
+
+        // 设置背景色
+        td[1].style.backgroundColor = 'rgba(9, 187, 7, ' + td4Text + ')';
+      }
+    }
+  </script>
+</body>
+
+</html>
