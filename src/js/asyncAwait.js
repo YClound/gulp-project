@@ -122,8 +122,42 @@ getFile('file3')
 
 // thunk 是一种函数，其返回值也是一个函数
 
+let processList = '', pid = '';
+function start(id) {
+  // if (!processList) processList = [];
+  // processList.push({ id: id });
+  // clearTimeout(pid);
+  // pid = setTimeout(() => {
+  //   (async () => {
+  //     let target = processList.shift();
+  //     console.log(target, processList.length)
+  //     while(target){
+  //       await execute(target.id);
+  //       target = processList.shift();
+  //     }
+  //   })();
+  // }, 0);
+  processList = !processList
+    ? execute(id)
+    : processList.then(() => execute(id));
+}
 
 
+function sleep() {
+  const duration = Math.floor(Math.random() * 500);
+  return new Promise(resolve => setTimeout(resolve, duration));
+}
+
+function execute(id) {
+  return sleep().then(() => {
+    console.log("id", id);
+  });
+}
+
+// 测试代码 (请勿更改):
+for (let i = 0; i < 5; i++) {
+  start(i);
+}
 
 
 
