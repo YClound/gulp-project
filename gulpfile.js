@@ -15,6 +15,7 @@ const sass = require('gulp-sass');
 const cssmin = require('gulp-cssmin');
 const imagemin = require('gulp-imagemin');
 const htmlmin = require('gulp-htmlmin');
+const jsMinify = require('gulp-minify');
 const connect = require('gulp-connect');
 const proxy = require('http-proxy-middleware');
 
@@ -44,6 +45,7 @@ function jsbuild() {
         .pipe(named())
         .pipe(webpackStream({ mode: "development" }))
         .pipe(babel())
+        .pipe(gulpIf(build, jsMinify({ noSource: true, ext: { min: '.js' } })))
         .pipe(dest(rootDir + '/js'))
 }
 
