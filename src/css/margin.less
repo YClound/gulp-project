@@ -1,0 +1,40 @@
+.loop(@margeStart: 0, @margeEnd: 100) when(@margeStart <= @margeEnd) {
+  .margin-@{margeStart} {
+    margin: "@{margeStart}px";
+  }
+  .loop(@margeStart + 5);
+}
+
+.loop-t(@margeStart: 0, @margeEnd: 100) when(@margeStart <= @margeEnd) {
+  .margin-t-@{margeStart} {
+    margin-top: "@{margeStart}px";
+  }
+  .loop-t(@margeStart + 5);
+}
+
+.loop-b(@margeStart: 0, @margeEnd: 100) when(@margeStart <= @margeEnd) {
+  .margin-b-@{margeStart} {
+    margin-bottom: "@{margeStart}px";
+  }
+  .loop-b(@margeStart + 5);
+}
+
+.loop-l(@margeStart: 0, @margeEnd: 100) when(@margeStart <= @margeEnd) {
+  .margin-l-@{margeStart} {
+    margin-left: "@{margeStart}px";
+  }
+  .loop-l(@margeStart + 5);
+}
+
+.loop-r(@margeStart: 0, @margeEnd: 100) when(@margeStart <= @margeEnd) {
+  .margin-r-@{margeStart} {
+    margin-right: "@{margeStart}px";
+  }
+  .loop-r(@margeStart + 5);
+}
+
+.loop(0, 100);
+.loop-t(0, 100);
+.loop-b(0, 100);
+.loop-l(0, 100);
+.loop-r(0, 100);

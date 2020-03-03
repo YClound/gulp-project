@@ -1,0 +1,18 @@
+@width: 100px;
+@height: @width + 10px;
+
+.font(@size: 14px, @color: #333, @weight: normal) {
+  font-weight: @weight;
+  font-size: @size;
+  color: @color;
+}
+
+.header {
+  width: @width;
+  height: @height;
+}
+
+.body {
+  .header();
+  .font(16px, #333, bold);
+}
