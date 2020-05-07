@@ -3,40 +3,40 @@
 @between: 8;
 
 .loop(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .margin-@{margeStart} {
-    margin: "@{margeStart}px";
+  .padding-@{margeStart} {
+    padding: "@{margeStart}px";
   }
 
   .loop(@margeStart + @between);
 }
 
 .loop-t(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .mt-@{margeStart} {
-    margin-top: "@{margeStart}px";
+  .pt-@{margeStart} {
+    padding-top: "@{margeStart}px";
   }
 
   .loop-t(@margeStart + @between);
 }
 
 .loop-b(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .mb-@{margeStart} {
-    margin-bottom: "@{margeStart}px";
+  .pb-@{margeStart} {
+    padding-bottom: "@{margeStart}px";
   }
 
   .loop-b(@margeStart + @between);
 }
 
 .loop-l(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .ml-@{margeStart} {
-    margin-left: "@{margeStart}px";
+  .pl-@{margeStart} {
+    padding-left: "@{margeStart}px";
   }
 
   .loop-l(@margeStart + @between);
 }
 
 .loop-r(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .mr-@{margeStart} {
-    margin-right: "@{margeStart}px";
+  .pr-@{margeStart} {
+    padding-right: "@{margeStart}px";
   }
 
   .loop-r(@margeStart + @between);

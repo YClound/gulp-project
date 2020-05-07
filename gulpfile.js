@@ -1,8 +1,6 @@
-const { series, parallel, src, dest, EventEmitter, watch } = require('gulp');
+const { series, src, dest, EventEmitter, watch } = require('gulp');
 const ts = require("gulp-typescript");
 const tsCompile = ts.createProject('tsconfig.json');
-const browserify = require('browserify');
-const tsify = require('tsify');
 
 const gulpIf = require("gulp-if");
 const babel = require("gulp-babel");
@@ -50,14 +48,8 @@ function jsbuild() {
 }
 
 function tsBuild() {
-    return browserify({
-        basedir: './src',
-        debug: true,
-        entries: ['**/*.ts'],
-        cache: {},
-        packageCache: {}
-    })
-        .plugin(tsify)
+    return src('./src/**/*.ts')
+        .pipe(tsCompile())
         .pipe(gulpIf(build, uglify()))
         .pipe(dest(rootDir))
 }

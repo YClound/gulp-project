@@ -1,132 +1,151 @@
-.dm-flex {
+.flexbox {
   display: flex;
 
-  // flex-direction: row/row-reverse/column/column-reverse;
-  &.dm-direction-row-reverse {
-    flex-direction: row-reverse;
-  }
-
-  &.dm-direction-col {
-    flex-direction: column;
-  }
-
-  &.dm-direction-col-reverse {
-    flex-direction: column-reverse;
-  }
-
-  // flex-wrap: nowrap/wrap/wrap-reverse;
-  &.dm-wrap {
-    flex-wrap: wrap;
-  }
-
-  &.dm-wrap-reverse {
-    flex-wrap: wrap-reverse;
-  }
-
-  // justify-content: flex-start/center/flex-end/space-between/space-around;
-  &.dm-justify-center {
+  &.center-all {
+    align-items: center;
     justify-content: center;
   }
 
-  &.dm-justify-end {
-    justify-content: flex-end;
+  // flex-direction: row/row-reverse/column/column-reverse;
+  &.direction- {
+    &row-reverse {
+      flex-direction: row-reverse;
+    }
+
+    &col {
+      flex-direction: column;
+
+      &-reverse {
+        flex-direction: column-reverse;
+      }
+    }
   }
 
-  &.dm-justify-between {
-    justify-content: space-between;
+  // flex-wrap: nowrap/wrap/wrap-reverse;
+  &.wrap {
+    flex-wrap: wrap;
+
+    &-reverse {
+      flex-wrap: wrap-reverse;
+    }
   }
 
-  &.dm-justify-around {
-    justify-content: space-around;
+  // justify-content: flex-start/center/flex-end/space-between/space-around;
+  &.justify- {
+    &center {
+      justify-content: center;
+    }
+
+    &end {
+      justify-content: flex-end;
+    }
+
+    &between {
+      justify-content: space-between;
+    }
+
+    &around {
+      justify-content: space-around;
+    }
   }
 
   // align-items: stretch/flex-start/flex-end/center/baseline;
-  &.dm-align-start {
-    align-items: flex-start;
-  }
+  &.align- {
+    &start {
+      align-items: flex-start;
+    }
 
-  &.dm-align-center {
-    align-items: center;
-  }
+    &center {
+      align-items: center;
+    }
 
-  &.dm-align-end {
-    align-items: flex-end;
-  }
+    &end {
+      align-items: flex-end;
+    }
 
-  &.dm-align-baseline {
-    align-items: baseline;
+    &baseline {
+      align-items: baseline;
+    }
   }
 
   // align-content: stretch/flex-start/flex-end/center/space-between/space-around;
-  &.dm-content-start {
-    align-content: flex-start;
-  }
+  &.content- {
+    &start {
+      align-content: flex-start;
+    }
 
-  &.dm-content-end {
-    align-content: flex-end;
-  }
+    &end {
+      align-content: flex-end;
+    }
 
-  &.dm-content-center {
-    align-content: center;
-  }
+    &center {
+      align-content: center;
+    }
 
-  &.dm-content-between {
-    align-content: space-between;
-  }
+    &between {
+      align-content: space-between;
+    }
 
-  &.dm-content-around {
-    align-content: space-around;
+    &around {
+      align-content: space-around;
+    }
   }
 
   // flex: 1; 是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选
-  .dm-flex-1 {
-    flex: 1;
-  }
+  .flex- {
+    &1 {
+      flex: 1;
+    }
 
-  .dm-flex-2 {
-    flex: 2;
-  }
+    &2 {
+      flex: 2;
+    }
 
-  .dm-flex-3 {
-    flex: 3;
-  }
+    &3 {
+      flex: 3;
+    }
 
-  .dm-flex-4 {
-    flex: 4;
+    &4 {
+      flex: 4;
+    }
   }
 
   // order: <integer> 定义项目的排列顺序。数值越小，排列越靠前，默认为0
-  .dm-order-1 {
-    order: 1;
-  }
+  .order- {
+    &1 {
+      order: 1;
+    }
 
-  .dm-order-2 {
-    order: 2;
-  }
+    &2 {
+      order: 2;
+    }
 
-  .dm-order--1 {
-    order: -1;
-  }
+    &-1 {
+      order: -1;
+    }
 
-  .dm-order--2 {
-    order: -2;
+    &-2 {
+      order: -2;
+    }
   }
 
   // flex-flow: <number>; 定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大
-  .dm-grow-1 {
-    flex-grow: 1;
-  }
+  .grow- {
+    &1 {
+      flex-grow: 1;
+    }
 
-  .dm-grow-2 {
-    flex-grow: 2;
-  }
+    &2 {
+      flex-grow: 2;
+    }
 
-  .dm-grow-3 {
-    flex-grow: 3;
-  }
+    &3 {
+      flex-grow: 3;
+    }
 
-  .dm-grow-4 {
-    flex-grow: 4;
+    &4 {
+      flex-grow: 4;
+    }
   }
 
   // flex-shrink: <number>; 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小，负值对该属性无效。
@@ -137,23 +156,25 @@
   // flex-basis: auto; 定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小
 
   // align-self: auto/flex-start/flex-end/center/baseline/stretch; 允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto
-  .dm-self-align-start {
-    align-self: flex-start;
-  }
+  .self-align- {
+    &start {
+      align-self: flex-start;
+    }
 
-  .dm-self-align-end {
-    align-self: flex-end;
-  }
+    &end {
+      align-self: flex-end;
+    }
 
-  .dm-self-align-center {
-    align-self: center;
-  }
+    &center {
+      align-self: center;
+    }
 
-  .dm-self-align-baseline {
-    align-self: baseline;
-  }
+    &baseline {
+      align-self: baseline;
+    }
 
-  .dm-self-align-stretch {
-    align-self: stretch;
+    &stretch {
+      align-self: stretch;
+    }
   }
 }

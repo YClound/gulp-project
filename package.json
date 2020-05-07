@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "7.7.4",
+    "@babel/core": "^7.7.4",
     "@babel/plugin-syntax-dynamic-import": "7.7.4",
     "@babel/plugin-transform-modules-commonjs": "7.7.4",
     "@babel/plugin-transform-regenerator": "7.7.4",
@@ -48,7 +48,8 @@
     "webpack-stream": "5.2.1"
   },
   "dependencies": {
-    "@babel/polyfill": "7.7.0"
+    "@babel/polyfill": "7.7.0",
+    "fs": "0.0.1-security"
   },
   "browserslist": [
     "last 1 version",

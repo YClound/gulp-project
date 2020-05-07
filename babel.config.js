@@ -18,9 +18,9 @@ const plugins = [["@babel/plugin-transform-runtime", {
   "helpers": false,
   "regenerator": true,
   "useESModules": false
-}], 
-"@babel/plugin-syntax-dynamic-import", 
-"@babel/plugin-transform-regenerator", 
-"@babel/plugin-transform-modules-commonjs"]
+}],
+  "@babel/plugin-syntax-dynamic-import",
+  "@babel/plugin-transform-regenerator",
+  "@babel/plugin-transform-modules-commonjs"]
 
 module.exports = { presets, plugins }

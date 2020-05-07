@@ -1,0 +1,13 @@
+@initStart: 10;
+@initEnd: 48;
+@between: 2;
+
+.loop(@start:@initStart, @end:@initEnd) when(@start <=@end) {
+  .fz-@{start} {
+    font-size: "@{start}px";
+  }
+
+  .loop(@start + @between);
+}
+
+.loop(@initStart, @initEnd);

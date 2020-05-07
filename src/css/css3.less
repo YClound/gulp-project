@@ -1,13 +1,26 @@
 .width-test {
   width: 0;
   display: inline-block;
-  outline: #333 2rpx solid;
+  outline: #333 2px solid;
   color: #333;
   align-items: center;
   align-self: auto;
+
   &::before {
     content: '你love我';
     color: #ffffff;
     display: flex;
   }
+}
+
+@clipPathHeight: calc(100% - 10px);
+
+.clip-path {
+  font-size: 14px;
+  line-height: 20px;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 10px 15px 20px;
+  background-color: #e4e4e4;
+  clip-path: polygon(0 0, 100% 0, 100% @clipPathHeight, 80% @clipPathHeight, 77% 100%, 70% @clipPathHeight, 0 @clipPathHeight);
 }
