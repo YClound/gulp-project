@@ -16,10 +16,12 @@ const htmlmin = require('gulp-htmlmin');
 const jsMinify = require('gulp-minify');
 const connect = require('gulp-connect');
 const proxy = require('http-proxy-middleware');
+const markdown = require('gulp-markdown');
+const header = require('gulp-header');
 
 sass.compiler = require('node-sass');
 const env = process.env.NODE_ENV;
-console.log(env)
+console.log(process.env)
 const rootDir = env === 'production' ? './dist' : './dev';
 const build = env === 'production' ? true : false;
 
@@ -66,6 +68,14 @@ function imageBuild() {
         .pipe(dest(`${rootDir}/images`))
 }
 
+function mdBuild() {
+    return src('./src/doc/*.md')
+        .pipe(header('<!doctype html><head><meta charset="utf-8"/><title>markdown文档</title><link rel="stylesheet" href="../css/md.css"></head>\n\r'))
+        .pipe(markdown())
+        .pipe(gulpIf(build, htmlmin({ collapseWhitespace: true })))
+        .pipe(dest(`${rootDir}/doc`))
+}
+
 function connectServer() {
     connect.server({
         root: rootDir,
@@ -94,6 +104,7 @@ function watchLive(cb) {
     watch('./src/**/*.less', { ignoreInitial: false }, cssBuild);
     watch('./src/**/*.html', { ignoreInitial: false }, htmlBuild);
     watch('./src/images/*.*', { ignoreInitial: false }, imageBuild);
+    watch('./src/doc/*.md', { ignoreInitial: false }, mdBuild);
     cb();
 }
 function start(cb) {
@@ -103,7 +114,7 @@ function start(cb) {
 }
 
 exports.start = series(cleanDir, watchLive, start);
-exports.build = series(cleanDir, jsbuild, cssBuild, htmlBuild, imageBuild, connectServer);
+exports.build = series(cleanDir, jsbuild, cssBuild, htmlBuild, imageBuild, mdBuild, connectServer);
 
 
 

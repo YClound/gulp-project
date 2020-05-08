@@ -20,6 +20,7 @@
     "babel-preset-stage-2": "6.24.1",
     "babelify": "10.0.0",
     "browserify": "^16.5.0",
+    "eslint": "^6.8.0",
     "gulp": "4.0.2",
     "gulp-autoprefixer": "7.0.1",
     "gulp-babel": "8.0.0",
@@ -49,7 +50,10 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.7.0",
-    "fs": "0.0.1-security"
+    "@yanan.g/publish-npm-test": "^1.0.1",
+    "fs": "0.0.1-security",
+    "gulp-header": "^2.0.9",
+    "gulp-markdown": "^5.0.1"
   },
   "browserslist": [
     "last 1 version",
