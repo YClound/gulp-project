@@ -6,7 +6,9 @@
   "repository": "https://github.com/YClound/gulp-project",
   "scripts": {
     "dev": "export NODE_ENV=dev && gulp start",
-    "build": "export NODE_ENV=production && gulp build"
+    "build": "export NODE_ENV=production && gulp build",
+    "test:node": "node ./node/timer.js --time 5 --message 'Hello Tuture'",
+    "lint": "eslint ./src/**/*.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +19,8 @@
     "@babel/plugin-transform-regenerator": "7.7.4",
     "@babel/plugin-transform-runtime": "7.7.4",
     "@babel/preset-env": "7.7.4",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
     "babel-preset-stage-2": "6.24.1",
     "babelify": "10.0.0",
     "browserify": "^16.5.0",
@@ -53,7 +57,8 @@
     "@yanan.g/publish-npm-test": "^1.0.1",
     "fs": "0.0.1-security",
     "gulp-header": "^2.0.9",
-    "gulp-markdown": "^5.0.1"
+    "gulp-markdown": "^5.0.1",
+    "os": "^0.1.1"
   },
   "browserslist": [
     "last 1 version",
