@@ -21,7 +21,7 @@ const header = require('gulp-header');
 
 sass.compiler = require('node-sass');
 const env = process.env.NODE_ENV;
-console.log(process.env)
+console.log(process.env.NODE_ENV)
 const rootDir = env === 'production' ? './dist' : './dev';
 const build = env === 'production' ? true : false;
 
@@ -84,8 +84,8 @@ function connectServer() {
         port: 9090, //服务器端口
         middleware: function (connect, opt) {
             return [
-                proxy('/datahub', {
-                    target: 'http://test.openapi.shuli.com',
+                proxy('/api', {
+                    target: 'http://localhost:9999',
                     changeOrigin: true
                 })
             ]
