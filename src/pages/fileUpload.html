@@ -1,35 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文件上传</title>
+  </head>
+  <body>
+    <form>
+      <input type="file" name="file" id="file" />
+    </form>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>文件上传</title>
-</head>
+    <div id="testGet">测试get接口</div>
 
-<body>
-  <form>
-    <input type="file" name="file" id="file" />
-  </form>
+    <div id="testPost">测试post接口</div>
 
-  <script type="text/javascript">
-    window.onload = function () {
-      const fileBtn = document.getElementById('file');
-      fileBtn.addEventListener('change', (file) => {
-        const fd = new FormData();
-        fd.append('file', fileBtn.files[0]);
-        console.log(fileBtn.files[0])
-        fetch('http://localhost:9999/api/upload', {
-          method: 'post',
-          body: fd
-        }).then(res => {
-          return res.json();
-        }).then(res => {
-          console.log(res)
-        })
-      })
-    }
-  </script>
-</body>
+    <img src="../images/avatar.png" alt="">
 
+    <script type="text/javascript" src="../js/fileUpload.js"></script>
+    <script type="text/javascript" src="http://localhost:9999/test.js"></script>
+  </body>
 </html>

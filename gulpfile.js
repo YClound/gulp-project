@@ -80,7 +80,7 @@ function connectServer() {
     connect.server({
         root: rootDir,
         livereload: true,
-        // host: '10.1.8.105',
+        host: '0.0.0.0',
         port: 9090, //服务器端口
         middleware: function (connect, opt) {
             return [
@@ -107,6 +107,7 @@ function watchLive(cb) {
     watch('./src/doc/*.md', { ignoreInitial: false }, mdBuild);
     cb();
 }
+
 function start(cb) {
     connectServer();
     watch('./src/**/*.*', { ignoreInitial: false }, reloadPage);

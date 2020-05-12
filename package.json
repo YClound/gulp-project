@@ -45,7 +45,7 @@
     "gulp-util": "3.0.8",
     "http-proxy-middleware": "0.20.0",
     "multer": "^1.4.2",
-    "node-sass": "4.13.0",
+    "node-sass": "^4.14.1",
     "rxjs": "6.5.3",
     "tsify": "4.0.1",
     "typescript": "3.7.2",
@@ -58,9 +58,11 @@
   "dependencies": {
     "@babel/polyfill": "7.7.0",
     "@yanan.g/publish-npm-test": "^1.0.1",
+    "axios": "^0.19.2",
     "fs": "0.0.1-security",
     "gulp-header": "^2.0.9",
     "gulp-markdown": "^5.0.1",
+    "md5": "^2.2.1",
     "os": "^0.1.1"
   },
   "browserslist": [
