@@ -100,7 +100,7 @@ function reloadPage() {
 
 function watchLive(cb) {
     watch('./src/**/*.js', { ignoreInitial: false }, jsbuild);
-    watch('./src/**/*.ts', { ignoreInitial: false }, tsBuild)
+    // watch('./src/**/*.ts', { ignoreInitial: false }, tsBuild);
     watch('./src/**/*.less', { ignoreInitial: false }, cssBuild);
     watch('./src/**/*.html', { ignoreInitial: false }, htmlBuild);
     watch('./src/images/*.*', { ignoreInitial: false }, imageBuild);

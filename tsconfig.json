@@ -1,38 +1,34 @@
 {
   "compilerOptions": {
-    "typeRoots": [
-      "node_modules/@types",
-      "./types",
-      "global.d.ts"
-    ],
-    "paths": {
-      "@/*": ["src/*"]
-    },
     "target": "es2017",
     "module": "commonjs",
-    "removeComments": false,
+    "removeComments": true,
     "preserveConstEnums": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
-    "outDir": "lib",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "baseUrl": ".",
     "rootDir": ".",
+    "outDir": "lib",
     "jsx": "preserve",
     "allowJs": true,
-    "resolveJsonModule": true
+    "typeRoots": [
+      "global.d.ts",
+      "node_modules/@types",
+    ],
   },
   "include": [
-    "src/**/*"
+    "src/ts/*.ts"
   ],
   "exclude": [
     "node_modules",
     "babel.config.js"
   ],
-  "compileOnSave": false
+  "compileOnSave": true
 }

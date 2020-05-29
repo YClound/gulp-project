@@ -2,48 +2,48 @@
 @initEnd: 48;
 @between: 8;
 
-.loop(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .padding-@{margeStart} {
-    padding: "@{margeStart}px";
+.paddingLoop(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .padding-@{paddingStart} {
+    padding: "@{paddingStart}px";
   }
 
-  .loop(@margeStart + @between);
+  .paddingLoop(@paddingStart + @between);
 }
 
-.loop-t(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .pt-@{margeStart} {
-    padding-top: "@{margeStart}px";
+.paddingLoop-t(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .pt-@{paddingStart} {
+    padding-top: "@{paddingStart}px";
   }
 
-  .loop-t(@margeStart + @between);
+  .paddingLoop-t(@paddingStart + @between);
 }
 
-.loop-b(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .pb-@{margeStart} {
-    padding-bottom: "@{margeStart}px";
+.paddingLoop-b(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .pb-@{paddingStart} {
+    padding-bottom: "@{paddingStart}px";
   }
 
-  .loop-b(@margeStart + @between);
+  .paddingLoop-b(@paddingStart + @between);
 }
 
-.loop-l(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .pl-@{margeStart} {
-    padding-left: "@{margeStart}px";
+.paddingLoop-l(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .pl-@{paddingStart} {
+    padding-left: "@{paddingStart}px";
   }
 
-  .loop-l(@margeStart + @between);
+  .paddingLoop-l(@paddingStart + @between);
 }
 
-.loop-r(@margeStart: @initStart, @margeEnd: @initEnd) when(@margeStart <=@margeEnd) {
-  .pr-@{margeStart} {
-    padding-right: "@{margeStart}px";
+.paddingLoop-r(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .pr-@{paddingStart} {
+    padding-right: "@{paddingStart}px";
   }
 
-  .loop-r(@margeStart + @between);
+  .paddingLoop-r(@paddingStart + @between);
 }
 
-.loop(@initStart, @initEnd);
-.loop-t(@initStart, @initEnd);
-.loop-b(@initStart, @initEnd);
-.loop-l(@initStart, @initEnd);
-.loop-r(@initStart, @initEnd);
+.paddingLoop(@initStart, @initEnd);
+.paddingLoop-t(@initStart, @initEnd);
+.paddingLoop-b(@initStart, @initEnd);
+.paddingLoop-l(@initStart, @initEnd);
+.paddingLoop-r(@initStart, @initEnd);

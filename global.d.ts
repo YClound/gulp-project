@@ -1,3 +1,3 @@
-declare type SomeType = {
-  count: number;
+declare const SomeType: {
+  count: number
 }
