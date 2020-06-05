@@ -18,6 +18,8 @@ const connect = require('gulp-connect');
 const proxy = require('http-proxy-middleware');
 const markdown = require('gulp-markdown');
 const header = require('gulp-header');
+const highlight = require('gulp-highlight-code');
+
 
 sass.compiler = require('node-sass');
 const env = process.env.NODE_ENV;
@@ -72,6 +74,7 @@ function mdBuild() {
     return src('./src/doc/*.md')
         .pipe(header('<!doctype html><head><meta charset="utf-8"/><title>markdown文档</title><link rel="stylesheet" href="../css/md.css"></head>\n\r'))
         .pipe(markdown())
+        .pipe(highlight())
         .pipe(gulpIf(build, htmlmin({ collapseWhitespace: true })))
         .pipe(dest(`${rootDir}/doc`))
 }

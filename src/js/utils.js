@@ -49,7 +49,7 @@ export const mixArray = (arr) => arr.slice().sort(() => Math.random() - .5);
  * 统计数组成员个数
  * reduce(function(total,currentValue, index,arr), initialValue)
  */
-export const count = arr.reduce((t, v) => {
+export const count = arr => arr.reduce((t, v) => {
   t[v] = t[v] ? ++t[v] : 1;
   return t;
 }, {});
@@ -64,4 +64,48 @@ export const AutoResponse = (width = 750) => {
   target.clientWidth >= 600
     ? (target.style.fontSize = "80px")
     : (target.style.fontSize = target.clientWidth / width * 100 + "px");
+}
+
+
+/**
+ * 防抖（Debounce）- 函数触发时延迟指定的时间执行，如在延迟过程中函数又被触发，则重新计算执行时间
+ * @fn : 要执行的函数
+ * @delay : 每次执行函数的时间间隔
+ * @immediate : 是否立即执行函数
+ */
+export function debounce(fn, delay = 500, immediate = false) {
+  let timer;
+  let immediateFn = immediate;
+  return function (...args) {
+    let context = this;
+    timer && clearTimeout(timer);
+
+    // 立即执行
+    if (immediateFn) {
+      immediateFn = false;
+      fn.apply(context, args);
+    }
+
+    timer = setTimeout(function () {
+      if (immediate) immediateFn = true;
+      fn.apply(context, args)
+    }, delay)
+  }
+}
+
+/**
+ * 节流（Throttle）- 函数连续触发时，在规定的时间内只会执行一次
+ * @fn : 要执行的函数
+ * @delay : 每次执行函数的时间间隔
+ */
+export function throttle(fn, delay) {
+  let timer;
+  return function (...args) {
+    let context = this;
+    if (timer) { return }
+    timer = setTimeout(function () {
+      timer = null;
+      fn.apply(context, args);
+    }, delay)
+  }
 }

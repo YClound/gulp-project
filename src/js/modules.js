@@ -69,4 +69,3 @@ setTimeout(() => {
     console.log('异步ES Module规范:', name)
   })
 }, 100);
-
