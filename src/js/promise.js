@@ -1,5 +1,6 @@
-// Promise 异步编程
+import { PromiseSource } from './customSource';
 
+// Promise 异步编程
 const newPromise = () => {
   return new Promise((resolve, reject) => {
     console.log('1111111111')
@@ -25,7 +26,6 @@ const promise1 = function(number) {
            resolve('success')
         }, 1000)
     } else {
-      console.log(qqq)
       reject('fail')
     }
   });
@@ -47,5 +47,11 @@ Promise.all([a, promise1(2), 10, promise2, 2]).then((values) => {
 })
 
 
-
 console.log('结合generator函数')
+
+let promiseSource1 = new PromiseSource((resolve, reject) => {
+  setTimeout(() => {
+    console.log('手动实现源码Promise')
+    resolve(11111111)
+  }, 1000)
+})

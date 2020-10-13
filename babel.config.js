@@ -12,15 +12,17 @@ const presets = [
   ]
 ]
 
-const plugins = [["@babel/plugin-transform-runtime", {
-  "absoluteRuntime": false,
-  "corejs": false,
-  "helpers": false,
-  "regenerator": true,
-  "useESModules": false
-}],
+const plugins = [
+  ["@babel/plugin-transform-runtime", {
+    "absoluteRuntime": false,
+    "corejs": false,
+    "helpers": false,
+    "regenerator": true,
+    "useESModules": false
+  }],
   "@babel/plugin-syntax-dynamic-import",
   "@babel/plugin-transform-regenerator",
-  "@babel/plugin-transform-modules-commonjs"]
+  "@babel/plugin-transform-modules-commonjs",
+  ["@babel/plugin-proposal-decorators", { "legacy": true }],]
 
 module.exports = { presets, plugins }
