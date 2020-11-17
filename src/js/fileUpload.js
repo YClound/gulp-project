@@ -1,6 +1,5 @@
 import { request } from '../public/request.js';
 
-
 window.onload = function () {
   const fileBtn = document.getElementById('file');
   fileBtn.addEventListener('change', (file) => {
@@ -35,8 +34,8 @@ window.onload = function () {
     request({
       url: '/index',
       method: 'post',
-      headers: {"Content-Type":'application/json'},
-      data: { type: 'post', object: {name: '1111111'} }
+      headers: { "Content-Type": 'application/json' },
+      data: { type: 'post', object: { name: '1111111' } }
     }).then((res) => {
       console.log(res, 'get')
     })

@@ -41,6 +41,7 @@ const options = {
   }
 }
 
+// 公共目录路径
 app.use(express.static((__dirname + '/public'), options))
 
 // Content-Type: application/json
@@ -55,6 +56,7 @@ const upload = multer({ dest: 'upload/' });
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Origin", "http://localhost:9090");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 })
@@ -98,6 +100,8 @@ app.post('/api/index', (req, res) => {
     },
   })
 })
+
+// node 中间件代理 同源策略是浏览器需要遵循的标准，而如果是服务器向服务器请求就无需遵循同源策略。
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)

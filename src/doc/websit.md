@@ -1,6 +1,7 @@
 # HTTP
 * [从URL输入到页面展现到底发生什么？](https://mp.weixin.qq.com/s/5JIW6zoSaudg_JqUeNJFyA)
 * [聊聊http压缩](https://zhuanlan.zhihu.com/p/90427059)
+* [九种跨域方式实现原理（完整版](https://github.com/ljianshu/Blog/issues/55)
 
 # javascript
 * [我对JS延迟异步脚本的思考](https://mp.weixin.qq.com/s/J4Duk8yexqBlBxjrjqwEKw)
