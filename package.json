@@ -61,11 +61,13 @@
     "@babel/polyfill": "7.7.0",
     "@yanan.g/publish-npm-test": "^1.0.1",
     "axios": "^0.19.2",
+    "file-saver": "^2.0.2",
     "fs": "0.0.1-security",
     "gulp-header": "^2.0.9",
     "gulp-markdown": "^5.0.1",
     "md5": "^2.2.1",
-    "os": "^0.1.1"
+    "os": "^0.1.1",
+    "xlsx": "^0.16.9"
   },
   "browserslist": [
     "last 1 version",

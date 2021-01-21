@@ -1,4 +1,5 @@
 import { request } from '../public/request.js';
+import { saveAs } from 'file-saver';
 
 window.onload = function () {
   const fileBtn = document.getElementById('file');
@@ -36,6 +37,23 @@ window.onload = function () {
       method: 'post',
       headers: { "Content-Type": 'application/json' },
       data: { type: 'post', object: { name: '1111111' } }
+    }).then((res) => {
+      console.log(res, 'get')
+    })
+  })
+
+  // 存储图片
+  document.getElementById('downloadImg').addEventListener('click', () => {
+    saveAs('https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png')
+  })
+
+  document.getElementById('exportExcelBtn').addEventListener('click', () => {
+    request({
+      url: '/export',
+      method: 'post',
+      responseType: 'blob',
+      headers: { "Content-Type": 'application/json' },
+      data: { name: '小' }
     }).then((res) => {
       console.log(res, 'get')
     })
