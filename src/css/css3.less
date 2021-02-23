@@ -24,3 +24,18 @@
   background-color: #e4e4e4;
   clip-path: polygon(0 0, 100% 0, 100% @clipPathHeight, 80% @clipPathHeight, 77% 100%, 70% @clipPathHeight, 0 @clipPathHeight);
 }
+
+/**
+  * @desc mask
+  * @link https://developer.mozilla.org/zh-CN/docs/Web/CSS/mask
+*/
+.mask-content {
+  margin: 10px 0;
+  position: relative;
+  width: 500px;
+  height: 250px;
+  background: url(https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1877625006,2341162086&fm=26&gp=0.jpg) no-repeat;
+  background-size: cover;
+  mask: linear-gradient(-90deg, transparent, #000);
+  -webkit-mask: linear-gradient(-90deg, transparent, #000);
+}
