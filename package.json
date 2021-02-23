@@ -60,7 +60,7 @@
   "dependencies": {
     "@babel/polyfill": "7.7.0",
     "@yanan.g/publish-npm-test": "^1.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "file-saver": "^2.0.2",
     "fs": "0.0.1-security",
     "gulp-header": "^2.0.9",
