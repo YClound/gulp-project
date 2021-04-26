@@ -29,92 +29,92 @@ const build = env === 'production' ? true : false;
 
 // 返回stream
 function cleanDir() {
-    return src(rootDir, { read: false, allowEmpty: true })
-        .pipe(gulpClean());
+  return src(rootDir, { read: false, allowEmpty: true })
+    .pipe(gulpClean());
 }
 
 function cssBuild() {
-    return src('./src/**/*.less')
-        .pipe(less())
-        .pipe(src('./src/**/*.scss'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulpIf(build, cssmin()))
-        .pipe(dest(rootDir))
+  return src('./src/**/*.less')
+    .pipe(less())
+    .pipe(src('./src/**/*.scss'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulpIf(build, cssmin()))
+    .pipe(dest(rootDir))
 }
 
 function jsbuild() {
-    return src('./src/**/*.js')
-        .pipe(named())
-        .pipe(webpackStream({ mode: "development" }))
-        .pipe(babel())
-        .pipe(gulpIf(build, jsMinify({ noSource: true, ext: { min: '.js' } })))
-        .pipe(dest(rootDir + '/js'))
+  return src('./src/**/*.js')
+    .pipe(named())
+    .pipe(webpackStream({ mode: "development" }))
+    .pipe(babel())
+    .pipe(gulpIf(build, jsMinify({ noSource: true, ext: { min: '.js' } })))
+    .pipe(dest(rootDir + '/js'))
 }
 
 function tsBuild() {
-    return src('./src/**/*.ts')
-        .pipe(tsCompile())
-        .pipe(gulpIf(build, uglify()))
-        .pipe(dest(rootDir))
+  return src('./src/**/*.ts')
+    .pipe(tsCompile())
+    .pipe(gulpIf(build, uglify()))
+    .pipe(dest(rootDir))
 }
 
 function htmlBuild() {
-    return src('./src/**/*.html')
-        .pipe(gulpIf(build, htmlmin({ collapseWhitespace: true })))
-        .pipe(dest(rootDir))
+  return src('./src/**/*.html')
+    .pipe(gulpIf(build, htmlmin({ collapseWhitespace: true })))
+    .pipe(dest(rootDir))
 }
 
 function imageBuild() {
-    return src('./src/images/*.*')
-        .pipe(imagemin())
-        .pipe(dest(`${rootDir}/images`))
+  return src('./src/images/*.*')
+    .pipe(imagemin())
+    .pipe(dest(`${rootDir}/images`))
 }
 
 function mdBuild() {
-    return src('./src/doc/*.md')
-        .pipe(header('<!doctype html><head><meta charset="utf-8"/><title>markdown文档</title><link rel="stylesheet" href="../css/md.css"></head>\n\r'))
-        .pipe(markdown())
-        .pipe(highlight())
-        .pipe(gulpIf(build, htmlmin({ collapseWhitespace: true })))
-        .pipe(dest(`${rootDir}/doc`))
+  return src('./src/doc/*.md')
+    .pipe(header('<!doctype html><head><meta charset="utf-8"/><title>markdown文档</title><link rel="stylesheet" href="../css/md.css"></head>\n\r'))
+    .pipe(markdown())
+    .pipe(highlight())
+    .pipe(gulpIf(build, htmlmin({ collapseWhitespace: true })))
+    .pipe(dest(`${rootDir}/doc`))
 }
 
 function connectServer() {
-    connect.server({
-        root: rootDir,
-        livereload: true,
-        host: '0.0.0.0',
-        port: 9090, //服务器端口
-        middleware: function (connect, opt) {
-            return [
-                proxy('/api', {
-                    target: 'http://localhost:9999',
-                    changeOrigin: true
-                })
-            ]
-        }
-    });
+  connect.server({
+    root: rootDir,
+    livereload: true,
+    host: '0.0.0.0',
+    port: 9090, //服务器端口
+    middleware: function (connect, opt) {
+      return [
+        proxy('/api', {
+          target: 'http://localhost:9999',
+          changeOrigin: true
+        })
+      ]
+    }
+  });
 }
 
 function reloadPage() {
-    return src('./src/**/*.*')
-        .pipe(connect.reload());
+  return src('./src/**/*.*')
+    .pipe(connect.reload());
 }
 
 function watchLive(cb) {
-    watch('./src/**/*.js', { ignoreInitial: false }, jsbuild);
-    // watch('./src/**/*.ts', { ignoreInitial: false }, tsBuild);
-    watch('./src/**/*.less', { ignoreInitial: false }, cssBuild);
-    watch('./src/**/*.html', { ignoreInitial: false }, htmlBuild);
-    watch('./src/images/*.*', { ignoreInitial: false }, imageBuild);
-    watch('./src/doc/*.md', { ignoreInitial: false }, mdBuild);
-    cb();
+  watch('./src/**/*.js', { ignoreInitial: false }, jsbuild);
+  // watch('./src/**/*.ts', { ignoreInitial: false }, tsBuild);
+  watch('./src/**/*.less', { ignoreInitial: false }, cssBuild);
+  watch('./src/**/*.html', { ignoreInitial: false }, htmlBuild);
+  watch('./src/images/*.*', { ignoreInitial: false }, imageBuild);
+  watch('./src/doc/*.md', { ignoreInitial: false }, mdBuild);
+  cb();
 }
 
 function start(cb) {
-    connectServer();
-    watch('./src/**/*.*', { ignoreInitial: false }, reloadPage);
-    cb();
+  connectServer();
+  watch('./src/**/*.*', { ignoreInitial: false }, reloadPage);
+  cb();
 }
 
 exports.start = series(cleanDir, watchLive, start);
@@ -124,20 +124,20 @@ exports.build = series(cleanDir, jsbuild, cssBuild, htmlBuild, imageBuild, mdBui
 
 // 返回promise
 function promiseTask() {
-    return Promise.resolve('the value is ignored');
+  return Promise.resolve('the value is ignored');
 }
 
 // 返回event emitter
 function eventEmitterTask() {
-    const emitter = new EventEmitter();
-    setTimeout(() => emitter.emit('finish'), 250);
-    return emitter;
+  const emitter = new EventEmitter();
+  setTimeout(() => emitter.emit('finish'), 250);
+  return emitter;
 }
 
 // 返回child process
 const { exec } = require('child_process');
 function childProcessTask() {
-    return exec('date');
+  return exec('date');
 }
 exports.childProcessTask = childProcessTask;
 
@@ -146,7 +146,7 @@ exports.childProcessTask = childProcessTask;
 const { Observable } = require('rxjs');
 
 function observableTask() {
-    return Observable.of(1, 2, 3);
+  return Observable.of(1, 2, 3);
 }
 
 exports.default = observableTask;
@@ -155,9 +155,9 @@ exports.default = observableTask;
 const fs = require('fs');
 
 async function asyncAwaitTask() {
-    const { version } = fs.readFileSync('package.json');
-    console.log(version);
-    await Promise.resolve('some result');
+  const { version } = fs.readFileSync('package.json');
+  console.log(version);
+  await Promise.resolve('some result');
 }
 
 exports.asyncAwaitTask = asyncAwaitTask;
