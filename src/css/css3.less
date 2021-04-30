@@ -44,3 +44,34 @@
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
 }
+
+.flex {
+  display: flex;
+
+  .flex1 {
+    flex: 1;
+  }
+}
+
+// position: sticky
+.stick-container {
+  height: 300px;
+  overflow-y: scroll;
+
+  .stick-content {
+    height: 1000px;
+    background-color: #e4e4e4;
+
+    .stick-nav {
+      position: sticky;
+      height: 50px;
+      background-color: green;
+      top: 0;
+
+      // z-index 改变显示层级
+      // &:nth-child(2) {
+      //   z-index: 10;
+      // }
+    }
+  }
+}

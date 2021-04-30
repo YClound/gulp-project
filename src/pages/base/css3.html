@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS3的使用</title>
   <link rel="stylesheet" href="/css/css3.css">
 </head>
+
 <body>
-  <div class="width-test"></div>
+  <div class="flex">
+    <!-- 左侧 -->
+    <div class="left flex1">
+      <div class="width-test"></div>
 
-  <div class="clip-path">clip-path多边形</div>
+      <div class="clip-path">clip-path多边形</div>
 
-  <!-- mask属性 -->
-  <div class="mask-content"></div>
+      <!-- mask属性 -->
+      <h2>mask属性</h2>
+      <div class="mask-content"></div>
+    </div>
+
+    <!-- 右侧 -->
+    <div class="right flex1">
+      <h2>position: sticky 粘性定位</h2>
+      <div class="stick-container">
+        <div class="stick-content">
+          <div class="stick-nav" style="position: static; margin-bottom: 50px; background-color: red;"></div>
+          <div class="stick-nav"></div>
+          <div class="stick-nav" style="background-color: blue; margin-top: 100px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
+
 </html>
