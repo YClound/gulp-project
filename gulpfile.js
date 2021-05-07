@@ -28,8 +28,8 @@ const rootDir = env === 'production' ? './dist' : './dev';
 const build = env === 'production' ? true : false;
 
 // 返回stream
-function cleanDir() {
-  return src(rootDir, { read: false, allowEmpty: true })
+function cleanDir(dir) {
+  return src(dir || rootDir, { read: false, allowEmpty: true })
     .pipe(gulpClean());
 }
 
@@ -166,3 +166,14 @@ exports.asyncAwaitTask = asyncAwaitTask;
 
 // exports.build = build;
 // exports.default = parallel(build, series(clean, build));
+
+
+/** 
+ * gulp 编写性能测试脚本 (lighthouse chrome-launcher)
+ **/
+const lighthouseReport = require('./build/report');
+exports['report:test'] = async function (cb) {
+  await cleanDir('./cases/**/*');
+  lighthouseReport();
+  cb();
+}

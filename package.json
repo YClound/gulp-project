@@ -9,7 +9,9 @@
     "build": "export NODE_ENV=production && gulp build",
     "test:node": "node ./node/timer.js --time 5 --message 'Hello Tuture'",
     "lint": "eslint ./src/**/*.js",
-    "server": "node ./node/server.js"
+    "server": "node ./node/server.js",
+    "report:test": "gulp report:test -t",
+    "report:task": "gulp report:test -tl"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +28,8 @@
     "babel-preset-stage-2": "6.24.1",
     "babelify": "10.0.0",
     "browserify": "^16.5.0",
+    "chrome-launcher": "^0.13.4",
+    "commander": "^7.2.0",
     "eslint": "^6.8.0",
     "express": "^4.17.1",
     "gulp": "4.0.2",
@@ -46,6 +50,7 @@
     "gulp-uglify": "3.0.2",
     "gulp-util": "3.0.8",
     "http-proxy-middleware": "0.20.0",
+    "lighthouse": "^7.4.0",
     "multer": "^1.4.2",
     "node-sass": "^4.14.1",
     "rxjs": "6.5.3",
@@ -74,5 +79,8 @@
     "> 1%",
     "maintained node versions",
     "not dead"
-  ]
+  ],
+  "engines": {
+    "node": ">=12.13.0"
+  }
 }
