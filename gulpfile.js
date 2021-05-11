@@ -29,7 +29,8 @@ const build = env === 'production' ? true : false;
 
 // 返回stream
 function cleanDir(dir) {
-  return src(dir || rootDir, { read: false, allowEmpty: true })
+  dir = typeof dir === 'string' ? dir : rootDir;
+  return src(dir, { read: false, allowEmpty: true })
     .pipe(gulpClean());
 }
 

@@ -34,3 +34,21 @@
 
 ## package-lock.json
 * 锁定全部直接依赖和间接依赖的精确版本号，或者说提供了关于 node_modules 目录的精确描述，从而确保在这个项目中开发的所有人都能有完全一致的 npm 依赖。
+
+## 常用的npm库
+### node库
+|名称|说明|
+|--|--|
+|commander|完整的 node.js 命令行解决方案|
+|chalk|Terminal string styling done right|
+|inquirer|A collection of common interactive command line user interfaces.|
+
+### javascript库
+|名称|说明|
+|--|--|
+|ismobilejs|A simple JS library that detects mobile devices in both the browser and NodeJS|
+
+### react库
+|名称|说明|
+|--|--|
+|react-beautiful-dnd|Beautiful and accessible drag and drop for lists with React|
